@@ -5,8 +5,17 @@ import re
 import string
 import matplotlib.pyplot as plt
 import seaborn as sns
-from xgboost import XGBClassifier
-from sklearn.feature_extraction.text import TfidfVectorizer
+import joblib
+
+@st.cache_resource
+def load_model_and_vectorizer():
+    model = joblib.load("model.pkl")
+    tfidf = joblib.load("vectorizer.pkl")
+    return model, tfidf
+
+# Load model and vectorizer only once
+model, tfidf = load_model_and_vectorizer()
+
 
 st.set_page_config(page_title="Spot the Scam", layout="wide")
 st.title("🕵️ Spot the Scam – Job Fraud Detector")
@@ -36,13 +45,7 @@ if uploaded_file:
     if 'fraudulent' in df.columns:
         df = df.drop(columns=['fraudulent'])
 
-    model, tfidf = load_model_and_vectorizer()
-    sample_df = pd.read_csv("https://drive.google.com/uc?export=download&id=18M7_qwQ9fdkifP0gztiqOuFoLOBk4WvG")
-    sample_df['combined_text'] = sample_df[['title', 'company_profile', 'description', 'requirements', 'benefits']].fillna('').agg(' '.join, axis=1)
-    sample_df['combined_text'] = sample_df['combined_text'].apply(clean_text)
-    X_sample = tfidf.fit_transform(sample_df['combined_text'])
-    y_sample = sample_df['fraudulent']
-    model.fit(X_sample, y_sample)
+   
 
     X_input = preprocess(df, tfidf)
     fraud_probs = model.predict_proba(X_input)[:, 1]
