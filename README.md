@@ -2,7 +2,7 @@
 
 **Spot the Scam** is a machine learning-powered web app that identifies fraudulent job postings based on natural language patterns in job descriptions, requirements, and company profiles.
 
-This project was built as part of the **DS-1 Hackathon (Spot the Scam)** challenge.
+This project was built as part of the **Anveshan Hackathon (Data Science Problem >> DS-1 (Spot the Scam))**.
 
 ---
 
@@ -47,13 +47,50 @@ This project was built as part of the **DS-1 Hackathon (Spot the Scam)** challen
 
 ## 🧪 Run Locally
 
-Clone the repo and install requirements:
-
 ```bash
-git clone https://github.com/yourusername/spot-the-scam.git
+git clone https://github.com/RigSri/spot-the-scam
 cd spot-the-scam
 pip install -r requirements.txt
 streamlit run app.py
+````
 
+---
+
+## 📁 Folder Structure
+
+```plaintext
+spot-the-scam/
+├── app.py              # Streamlit dashboard
+├── model.pkl           # Pretrained XGBoost model
+├── vectorizer.pkl      # TF-IDF vectorizer
+├── requirements.txt    # Python dependencies
+└── README.md
+```
+
+---
+
+## 🎥 Demo Video
+
+👉 [Click here to watch the demo](https://your-demo-video-link.com)
+
+> A quick walkthrough showing how to upload a CSV, generate predictions, and interpret results through interactive visuals.
+
+---
+
+## 🏁 Submission Notes
+
+* ✅ F1 Score-focused fraud classifier
+* ✅ Dashboard with required visuals
+* ✅ Tested on official test file
+* ✅ Deployed via Streamlit Cloud
+* ✅ GitHub + app link submitted
+
+---
+
+## 🙌 Credits
+
+Built by \[Hrige Srivastava]
+
+```
 
 ---
