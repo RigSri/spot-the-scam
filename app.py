@@ -50,6 +50,17 @@ if uploaded_file:
 
     st.subheader("🔍 Prediction Results")
     st.dataframe(df[['job_id', 'title', 'fraud_probability', 'predicted_class']].sort_values(by='fraud_probability', ascending=False).head(25))
+    # 🔽 Download CSV section
+    st.markdown("### 📥 Download Results")
+    download_df = df[['job_id', 'title', 'fraud_probability', 'predicted_class']]
+    csv = download_df.to_csv(index=False).encode('utf-8')
+    st.download_button(
+    label="Download predictions as CSV",
+    data=csv,
+    file_name='scam_predictions.csv',
+    mime='text/csv'
+)
+
 
     st.subheader("📊 Scam vs Legit Breakdown")
     pie_counts = df['predicted_class'].value_counts().sort_index()
