@@ -9,23 +9,16 @@ import joblib
 from wordcloud import WordCloud
 import shap
 
+st.set_page_config(page_title="Spot the Scam", layout="wide")
+st.title("🕵️ Spot the Scam – Job Fraud Detector")
+
 @st.cache_resource
 def load_model_and_vectorizer():
     model = joblib.load("model.pkl")
     tfidf = joblib.load("vectorizer.pkl")
     return model, tfidf
 
-# Load model and vectorizer only once
 model, tfidf = load_model_and_vectorizer()
-
-
-st.set_page_config(page_title="Spot the Scam", layout="wide")
-st.title("🕵️ Spot the Scam – Job Fraud Detector")
-
-@st.cache_resource
-def load_model_and_vectorizer():
-    return XGBClassifier(n_estimators=300, max_depth=6, learning_rate=0.05, eval_metric='logloss'), \
-           TfidfVectorizer(max_features=10000, ngram_range=(1,2), stop_words='english')
 
 def clean_text(text):
     text = text.lower()
@@ -41,13 +34,12 @@ def preprocess(df, tfidf):
     return tfidf.transform(df['combined_text'])
 
 uploaded_file = st.file_uploader("Upload a job listings CSV", type=["csv"])
+
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
 
     if 'fraudulent' in df.columns:
         df = df.drop(columns=['fraudulent'])
-
-   
 
     X_input = preprocess(df, tfidf)
     fraud_probs = model.predict_proba(X_input)[:, 1]
@@ -73,29 +65,29 @@ if uploaded_file:
     st.pyplot(fig2)
 
     st.subheader("⚠️ Top 10 Most Suspicious Jobs")
-    # Word Cloud from top suspicious jobs
-st.subheader("🧠 Word Cloud of Suspicious Job Descriptions")
-text = " ".join(top10['combined_text'].tolist())
-if text.strip():
-    wc = WordCloud(width=800, height=300, background_color='white').generate(text)
-    fig, ax = plt.subplots()
-    ax.imshow(wc, interpolation='bilinear')
-    ax.axis("off")
-    st.pyplot(fig)
-else:
-    st.info("Not enough text to generate word cloud.")
-# SHAP explanation for most suspicious job
-st.subheader("🔍 SHAP Explanation for Most Suspicious Job")
-explainer = shap.Explainer(model)
-X_top1 = preprocess(top10.head(1), tfidf)
-shap_values = explainer(X_top1)
-
-# Display SHAP waterfall plot
-st.set_option('deprecation.showPyplotGlobalUse', False)
-shap.plots.waterfall(shap_values[0])
-st.pyplot(bbox_inches='tight')
-
     top10 = df.sort_values('fraud_probability', ascending=False).head(10)
     st.table(top10[['job_id', 'title', 'fraud_probability']])
+
+    # 🧠 Word Cloud
+    st.subheader("🧠 Word Cloud of Suspicious Job Descriptions")
+    text = " ".join(top10['combined_text'].tolist())
+    if text.strip():
+        wc = WordCloud(width=800, height=300, background_color='white').generate(text)
+        fig_wc, ax_wc = plt.subplots()
+        ax_wc.imshow(wc, interpolation='bilinear')
+        ax_wc.axis("off")
+        st.pyplot(fig_wc)
+    else:
+        st.info("Not enough text to generate word cloud.")
+
+    # 🔍 SHAP Explanation
+    st.subheader("🔍 SHAP Explanation for Most Suspicious Job")
+    explainer = shap.Explainer(model)
+    X_top1 = preprocess(top10.head(1), tfidf)
+    shap_values = explainer(X_top1)
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    shap.plots.waterfall(shap_values[0])
+    st.pyplot(bbox_inches='tight')
+
 else:
     st.info("Upload a CSV file to begin.")
