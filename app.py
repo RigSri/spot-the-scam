@@ -85,8 +85,9 @@ if uploaded_file:
     explainer = shap.Explainer(model)
     X_top1 = preprocess(top10.head(1), tfidf)
     shap_values = explainer(X_top1)
-    shap.plots.waterfall(shap_values[0])
-    st.pyplot(bbox_inches='tight')
+    fig_shap = shap.plots.waterfall(shap_values[0], show=False)
+    st.pyplot(fig_shap)
+
 
 else:
     st.info("Upload a CSV file to begin.")
