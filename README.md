@@ -80,12 +80,19 @@ python retrain.py
 
 ```plaintext
 spot-the-scam/
-├── app.py              # Streamlit dashboard
-├── retrain.py          # Script to retrain model on new data
-├── model.pkl           # Pretrained XGBoost model
-├── vectorizer.pkl      # TF-IDF vectorizer
-├── requirements.txt    # Python dependencies
-└── README.md
+├── app.py                  # Streamlit dashboard
+├── retrain.py              # Script to retrain model on new data
+├── api/                    # FastAPI backend for real-time predictions
+│   └── main.py             # FastAPI app with /predict endpoint
+├── model.pkl               # Trained XGBoost model
+├── vectorizer.pkl          # TF-IDF vectorizer
+├── requirements.txt        # Python dependencies
+├── screenshots/            # Folder for README visuals (optional)
+│   ├── table.png
+│   ├── chart.png
+│   └── shap.png
+├── .gitignore              # Optional: ignore pkl, cache, etc.
+└── README.md               # Project documentation
 ```
 
 ---
