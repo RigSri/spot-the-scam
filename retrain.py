@@ -8,7 +8,8 @@ from xgboost import XGBClassifier
 from sklearn.metrics import f1_score
 
 # Load new training data
-df = pd.read_csv("train.csv")  # Replace with your real dataset filename
+df = pd.read_csv("NqndMEyZakuimmFI.csv
+")  # Replace with your real dataset filename
 df.dropna(subset=["title", "company_profile", "description", "requirements", "benefits", "fraudulent"], inplace=True)
 
 # Combine and clean text fields
