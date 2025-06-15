@@ -32,16 +32,20 @@ This project was built as part of the **Anveshan Hackathon (Data Science Problem
   - 📋 Prediction table with fraud probability
   ![image](https://github.com/user-attachments/assets/98027c4c-ed11-4730-994a-fd627972585b)
   - 📈 Histogram of scam likelihoods
+  - ![image](https://github.com/user-attachments/assets/f224bd92-dabb-4f70-993c-e277ebde684a)
   - 🥧 Pie chart of scam vs legit
+  - ![image](https://github.com/user-attachments/assets/05aca6d6-188b-4a40-88a9-3b1e0afc81e2)
   - 🚨 Top 10 most suspicious job posts
   - ![image](https://github.com/user-attachments/assets/b4b09e5c-429b-4f80-b1ad-cafe0c0e3fb1)
 - ✅ SHAP explanation for the most suspicious job
+- ![image](https://github.com/user-attachments/assets/20fe6dd0-9de6-4ea3-8c8d-b087398edb7b)
 - ✅ Word cloud of suspicious job descriptions
+- ![image](https://github.com/user-attachments/assets/4033c7fd-d3e5-408c-b74b-a9de0fa3e0de)
 - ✅ Realtime job scam scanner (form-based input)
+- ![image](https://github.com/user-attachments/assets/4a4ba186-057f-4948-b898-d56b7168f5de)
 - ✅ Email alerts for high-risk jobs (`fraud_probability > 0.75`)
 - ![image](https://github.com/user-attachments/assets/94af3288-9026-4198-beea-59328939309f)
 - ✅ CSV download of predictions
-
 ---
 
 ## 🛠 Tech Stack
