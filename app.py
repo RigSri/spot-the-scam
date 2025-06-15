@@ -116,7 +116,7 @@ if submitted:
 
         try:
             response = requests.post(
-                "https://0edb-34-125-120-165.ngrok-free.app/predict",
+                "https://0edb-34-125-120-165.ngrok-free.app/predict",  # Update if ngrok changes
                 json=job_data
             )
 
@@ -124,6 +124,37 @@ if submitted:
                 result = response.json()
                 prob = result["fraud_probability"]
                 pred = result["prediction"]
+
+                # ✅ Email alert if scam risk is high
+                if prob > 0.75:
+                    import smtplib
+                    from email.mime.text import MIMEText
+
+                    sender = "srivastavahrige@gmail.com"         # <-- your Gmail
+                    password = "wskm yoqk wlqf tlag"        # <-- your app password (no quotes inside quotes)
+                    receiver = "srivastavahrige@gmail.com"       # <-- your email or any recipient
+
+                    msg = MIMEText(
+                        f"""🚨 High-Risk Job Detected!
+
+Job Title: {title}
+Probability of Fraud: {prob:.2%}
+Prediction: Scam
+
+Take caution and review this job post manually.
+"""
+                    )
+                    msg["Subject"] = "🚨 SCAM ALERT – High-Risk Job Detected"
+                    msg["From"] = sender
+                    msg["To"] = receiver
+
+                    try:
+                        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+                            smtp.login(sender, password)
+                            smtp.send_message(msg)
+                        st.warning("🚨 Email alert sent!")
+                    except Exception as e:
+                        st.error(f"Failed to send alert: {e}")
 
                 st.success(f"Fraud Probability: **{prob:.2%}**")
                 if pred == 1:
