@@ -127,7 +127,7 @@ if submitted:
 
         try:
             response = requests.post(
-                "https://0edb-34-125-120-165.ngrok-free.app/predict",  # Update if ngrok changes
+                "https://dd77-34-16-166-102.ngrok-free.app/predict",  # Update if ngrok changes
                 json=job_data
             )
 
