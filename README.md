@@ -55,7 +55,12 @@ cd spot-the-scam
 pip install -r requirements.txt
 streamlit run app.py
 
->>📂Folder structure
+
+---
+
+## ✅ 📁 Folder Structure
+```markdown
+## 📁 Folder Structure
 spot-the-scam/
 ├── app.py              # Main Streamlit dashboard
 ├── model.pkl           # Pre-trained XGBoost model
