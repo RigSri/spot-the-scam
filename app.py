@@ -131,7 +131,7 @@ if submitted:
                     from email.mime.text import MIMEText
 
                     sender = "srivastavahrige@gmail.com"         # <-- your Gmail
-                    password = "wskm yoqk wlqf tlag"        # <-- your app password (no quotes inside quotes)
+                    password = "wskmyoqkwlqftlag"        # <-- your app password (no quotes inside quotes)
                     receiver = "srivastavahrige@gmail.com"       # <-- your email or any recipient
 
                     msg = MIMEText(
