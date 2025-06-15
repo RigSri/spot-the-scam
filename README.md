@@ -57,13 +57,3 @@ streamlit run app.py
 
 
 ---
-
-## ✅ 📁 Folder Structure
-```markdown
-## 📁 Folder Structure
-spot-the-scam/
-├── app.py              # Main Streamlit dashboard
-├── model.pkl           # Pre-trained XGBoost model
-├── vectorizer.pkl      # Fitted TF-IDF vectorizer
-├── requirements.txt    # Libraries
-└── README.md           # You're reading it
