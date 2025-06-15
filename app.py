@@ -6,6 +6,8 @@ import string
 import matplotlib.pyplot as plt
 import seaborn as sns
 import joblib
+from wordcloud import WordCloud
+import shap
 
 @st.cache_resource
 def load_model_and_vectorizer():
@@ -71,6 +73,28 @@ if uploaded_file:
     st.pyplot(fig2)
 
     st.subheader("⚠️ Top 10 Most Suspicious Jobs")
+    # Word Cloud from top suspicious jobs
+st.subheader("🧠 Word Cloud of Suspicious Job Descriptions")
+text = " ".join(top10['combined_text'].tolist())
+if text.strip():
+    wc = WordCloud(width=800, height=300, background_color='white').generate(text)
+    fig, ax = plt.subplots()
+    ax.imshow(wc, interpolation='bilinear')
+    ax.axis("off")
+    st.pyplot(fig)
+else:
+    st.info("Not enough text to generate word cloud.")
+# SHAP explanation for most suspicious job
+st.subheader("🔍 SHAP Explanation for Most Suspicious Job")
+explainer = shap.Explainer(model)
+X_top1 = preprocess(top10.head(1), tfidf)
+shap_values = explainer(X_top1)
+
+# Display SHAP waterfall plot
+st.set_option('deprecation.showPyplotGlobalUse', False)
+shap.plots.waterfall(shap_values[0])
+st.pyplot(bbox_inches='tight')
+
     top10 = df.sort_values('fraud_probability', ascending=False).head(10)
     st.table(top10[['job_id', 'title', 'fraud_probability']])
 else:
