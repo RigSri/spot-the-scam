@@ -38,7 +38,6 @@ if uploaded_file:
 
     model, tfidf = load_model_and_vectorizer()
     sample_df = pd.read_csv("https://drive.google.com/uc?export=download&id=18M7_qwQ9fdkifP0gztiqOuFoLOBk4WvG")
-")
     sample_df['combined_text'] = sample_df[['title', 'company_profile', 'description', 'requirements', 'benefits']].fillna('').agg(' '.join, axis=1)
     sample_df['combined_text'] = sample_df['combined_text'].apply(clean_text)
     X_sample = tfidf.fit_transform(sample_df['combined_text'])
