@@ -30,14 +30,16 @@ This project was built as part of the **Anveshan Hackathon (Data Science Problem
 - ✅ Upload a CSV of job listings (test file format)
 - ✅ Get:
   - 📋 Prediction table with fraud probability
-  - ![image](https://github.com/user-attachments/assets/3b338474-d90a-42a0-9a52-ab5e0a3cacc6)
+  ![image](https://github.com/user-attachments/assets/98027c4c-ed11-4730-994a-fd627972585b)
   - 📈 Histogram of scam likelihoods
   - 🥧 Pie chart of scam vs legit
   - 🚨 Top 10 most suspicious job posts
+  - ![image](https://github.com/user-attachments/assets/b4b09e5c-429b-4f80-b1ad-cafe0c0e3fb1)
 - ✅ SHAP explanation for the most suspicious job
 - ✅ Word cloud of suspicious job descriptions
 - ✅ Realtime job scam scanner (form-based input)
 - ✅ Email alerts for high-risk jobs (`fraud_probability > 0.75`)
+- ![image](https://github.com/user-attachments/assets/94af3288-9026-4198-beea-59328939309f)
 - ✅ CSV download of predictions
 
 ---
