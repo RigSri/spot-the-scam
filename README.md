@@ -90,7 +90,3 @@ spot-the-scam/
 ## 🙌 Credits
 
 Built by \[Hrige Srivastava]
-
-```
-
----
