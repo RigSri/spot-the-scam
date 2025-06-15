@@ -80,19 +80,15 @@ if uploaded_file:
     else:
         st.info("Not enough text to generate word cloud.")
 
-   # 🔍 SHAP Explanation
-   st.subheader("🔍 SHAP Explanation for Most Suspicious Job")
-   explainer = shap.Explainer(model)
-   X_top1 = preprocess(top10.head(1), tfidf)
-   shap_values = explainer(X_top1)
+    # 🔍 SHAP Explanation
+    st.subheader("🔍 SHAP Explanation for Most Suspicious Job")
+    explainer = shap.Explainer(model)
+    X_top1 = preprocess(top10.head(1), tfidf)
+    shap_values = explainer(X_top1)
 
-   # Render SHAP plot safely into matplotlib and show with Streamlit
-   import matplotlib.pyplot as plt
-   fig_shap, ax = plt.subplots(figsize=(10, 5))
-   shap.plots.waterfall(shap_values[0], show=True)
-   st.pyplot(fig_shap)
-
-
+    fig_shap, ax = plt.subplots(figsize=(10, 5))
+    shap.plots.waterfall(shap_values[0], show=True)
+    st.pyplot(fig_shap)
 
 else:
     st.info("Upload a CSV file to begin.")
