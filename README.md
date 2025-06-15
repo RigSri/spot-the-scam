@@ -99,10 +99,10 @@ spot-the-scam/
 
 ## 🎥 Demo Video
 
-👉 [Click here to watch the demo](https://your-demo-video-link.com)
+👉 [Click here to watch the demo](https://drive.google.com/file/d/1JWoK4pNx7akIe8cuLNVjcCrPvp-f9jLu/view?usp=sharing)
 
 > A quick walkthrough showing CSV upload, real-time prediction, and SHAP/word cloud insights.
-
+ppt link- https://docs.google.com/presentation/d/1QBFkkFEeMMLqaDri_GAyXY697rKZyFbr/edit?usp=sharing&ouid=101040769562819703064&rtpof=true&sd=true
 ---
 
 ## 🏁 Submission Notes
