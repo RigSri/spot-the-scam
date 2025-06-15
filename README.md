@@ -30,6 +30,7 @@ This project was built as part of the **Anveshan Hackathon (Data Science Problem
 - ✅ Upload a CSV of job listings (test file format)
 - ✅ Get:
   - 📋 Prediction table with fraud probability
+  - ![image](https://github.com/user-attachments/assets/3b338474-d90a-42a0-9a52-ab5e0a3cacc6)
   - 📈 Histogram of scam likelihoods
   - 🥧 Pie chart of scam vs legit
   - 🚨 Top 10 most suspicious job posts
