@@ -85,7 +85,6 @@ if uploaded_file:
     explainer = shap.Explainer(model)
     X_top1 = preprocess(top10.head(1), tfidf)
     shap_values = explainer(X_top1)
-    st.set_option('deprecation.showPyplotGlobalUse', False)
     shap.plots.waterfall(shap_values[0])
     st.pyplot(bbox_inches='tight')
 
