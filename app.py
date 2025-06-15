@@ -92,3 +92,46 @@ if uploaded_file:
 
 else:
     st.info("Upload a CSV file to begin.")
+import requests
+
+st.header("📨 Scan a Job Posting in Real Time")
+
+with st.form("job_form"):
+    title = st.text_input("Job Title")
+    company = st.text_area("Company Profile")
+    description = st.text_area("Job Description")
+    requirements = st.text_area("Requirements")
+    benefits = st.text_area("Benefits")
+    submitted = st.form_submit_button("Submit for Scam Prediction")
+
+if submitted:
+    with st.spinner("Sending to real-time API..."):
+        job_data = {
+            "title": title,
+            "company_profile": company,
+            "description": description,
+            "requirements": requirements,
+            "benefits": benefits
+        }
+
+        try:
+            response = requests.post(
+                "https://1067-34-57-242-54.ngrok-free.app/predict",
+                json=job_data
+            )
+
+            if response.status_code == 200:
+                result = response.json()
+                prob = result["fraud_probability"]
+                pred = result["prediction"]
+
+                st.success(f"Fraud Probability: **{prob:.2%}**")
+                if pred == 1:
+                    st.error("⚠️ Prediction: Scam")
+                else:
+                    st.success("✅ Prediction: Legitimate")
+            else:
+                st.error("❌ Error from API: " + str(response.status_code))
+
+        except Exception as e:
+            st.error(f"🚫 Could not connect to API: {e}")
