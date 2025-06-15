@@ -116,7 +116,7 @@ if submitted:
 
         try:
             response = requests.post(
-                "https://1067-34-57-242-54.ngrok-free.app/docs#/default/predict_predict_post",
+                "https://0edb-34-125-120-165.ngrok-free.app/predict",
                 json=job_data
             )
 
